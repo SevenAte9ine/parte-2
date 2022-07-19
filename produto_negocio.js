@@ -1,9 +1,9 @@
 const produtoRepositorio = require('../persistencia/produto_persistencia.js')
 
 function inserir (produto, callback) {
-    if(!produto || !produto.nome || !produto.ano){
+    if(!produto || !produto.nome || !produto.ano || !produto.autores || !produto.editora || !produto.alugado || !produto.alugador){
         const erro = { 
-            mensagem: "Nome ou ano vazios!",
+            mensagem: "Campos vazios!",
             numero: 400
         };
         callback(erro, undefined)
@@ -38,9 +38,9 @@ function atualizar(id, produto, callback) {
         }
         callback(erro, undefined);
     }
-    else if(!produto || !produto.nome || !produto.ano) {
+    else if(!produto || !produto.nome || !produto.ano || !produto.autores || !produto.editora || !produto.alugado || !produto.alugador) {
         const erro = { 
-            mensagem: "Os campos nome ou ano devem ser preenchidos!",
+            mensagem: "Os campos devem ser preenchidos!",
             numero: 400
         };
         callback(erro, undefined)
@@ -70,4 +70,5 @@ function deletar(id, callback) {
 module.exports = {
     inserir, listar, buscarPorId, atualizar, deletar
 } 
+
 

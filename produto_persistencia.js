@@ -24,8 +24,8 @@ function inserir(produto, callback) {
     const cliente = new Client(conexao);
     cliente.connect();
 
-    const sql = "INSERT INTO produtos(nome, ano) VALUES ($1, $2) RETURNING *";
-    const values = [produto.nome, produto.ano];
+    const sql = "INSERT INTO produtos(nome, ano, autores, editora, alugado, alugador) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
+    const values = [produto.nome, produto.ano, produto.autores, produto.editora, produto.alugado, produto.alugador];
 
     cliente.query(sql, values, 
         function (err, res){
@@ -90,8 +90,8 @@ function atualizar(id,produto, callback) {
     const cliente = new Client(conexao);
     cliente.connect();
 
-    const sql = "UPDATE produtos SET nome=$1, ano=$2 WHERE id=$3 RETURNING *"    
-    const values = [produto.nome, produto.ano, id];
+    const sql = "UPDATE produtos SET nome=$1, ano=$2, autores=$3, editora=$4, alugado=$5, alugador=$6 WHERE id=$7 RETURNING *"    
+    const values = [produto.nome, produto.ano, produto.autores, produto.editora, produto.alugado, produto.alugador, id];
 
     cliente.query(sql, values, function(err, res) {
         if(err) {

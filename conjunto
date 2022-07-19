@@ -1,0 +1,9 @@
+CREATE TABLE livros (
+ID SERIAL PRIMARY KEY NOT NULL,
+NOME VARCHAR(30) NOT NULL,
+AUTORES VARCHAR(60) NOT NULL);
+
+select * from livros
+
+drop table livros
+
